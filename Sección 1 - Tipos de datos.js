@@ -292,8 +292,8 @@ funcionDeclarada();
 // Función anónima (Paréntisis de explicación)
 /*La notación expresada de funciones permite convertir la función en anónima; en su asignación, sólo usamos la palabra reservada <function>. Cuando invoquemos esta función, escribimos entonces el nombre de la variable con paréntesis ()*/
 
-funcionExpresada();
-// ^ Comentar esta línea de código para permitir la ejecución de funcionExpresada() 
+// funcionExpresada();
+// ! ^ Comentar esta línea de código para permitir la ejecución de funcionExpresada() 
 const funcionExpresada = function(){
 console.log("Esto es una función expresada, es decir, una función que se le ha asignado como valor a una variable. Si invocamos esta función antes de su definición JS nos dirá 'Cannot access 'funcionExpresada' before initialization'");
 }
@@ -334,7 +334,7 @@ console.log(c);
 const d1 = new Array(5);
 console.log(d);
 const e1 = new Array(1, 2, 3, true, false);
-console.log(e);
+console.log(e1);
 
 /*Métodos de los arrays más usados
     .fill -> Este método sirve para rellenar un array; puede recibir un parámetro cualquiera.
@@ -362,3 +362,97 @@ console.log(colores2);
 colores2.forEach(function (element, index){
     console.log(`<li id="${index}">${element}</~li>`)
 })
+
+
+
+//OBJETOS
+/*Los objetos pueden declararse usando el constructor de una clase. Por ejemplo, si usamos el constructor de la clase String, declararemos un objeto de tipo String.
+
+NOTA: ESTA FORMA NO SE USA A DÍA DE HOY
+*/
+let a2 = new String("Hola");
+console.log(a2);
+
+/*La forma actual y más recomendada para declarar un objeto es a través de llaves, y entre dichas llaves declarar propidades con sus respectivos valores. Dicho objeto adquirirá el nombre de la variable o constante a la que se le asigne.*/
+const b2 = {
+    //propiedad1: valor,
+    //propiedad2: valor,
+    //propiedad3: valor,
+    //...
+};
+console.log(b2);
+
+/*De igual forma, podemos declarar un objeto a través del uso del constructor Object. En la consola, podemos ver qué tipo el prototipo que tiene, que en este caso, será de tipo Object.*/
+const c2 = new Object();
+console.log(c2);
+
+/*Los objetos pueden contener arreglos, funciones, incluso otros objetos entre sus propiedades. Por ejemplo:*/
+const jon ={
+    //Propiedades
+    nombre: "Jon",
+    apellido: "MirCha",
+    edad:35,
+    soltero: false,
+    //Arreglos
+    pasatiempos: ["Correr", "Hacer ejercicio", "Dar clases"],
+    //Objetos
+    contacto: {
+        email: "jonmircha@gmail.com",
+        twitter: "@jonmircha",
+        movil: "521231231232"
+    },
+    //Funciones
+    saludar: function(){
+        console.log("Hola :)");
+    },
+    decirMiNombre: function (){
+        console.log(`Hola, me llamo ${this.nombre} ${this.apellido}, y tengo ${this.edad} años. Puedes seguir como ${this.contacto.twitter} en twitter`);
+    }
+};
+
+/*Podemos imprimir en la consola directamente el objeto en cuestión. Si se hace de esta forma, se retornará como resultado el contenido del objeto.*/
+console.log(jon);
+/*Podemos acceder a las propiedades o atributos de un objeto de dos formas.
+
+    1ra Forma: Especificar el atributo usando la notación de corchetes -> esta forma de acceder a los atributos de un objeto se considera mala práctica, no por ser incorrecto, si no por ser más compleja; se requiere de conocer los atributos del objeto.
+
+    2da Forma: Usar la notación de punto para acceder a los atributos (Recomendada) -> esta forma hace uso del punto ( . ) para poder acceder a los atributos de un objeto, y es la forma estándar y más usada a día de hoy.
+
+    Ejemplos:
+*/
+console.log(jon["nombre"]);
+console.log(jon["apellido"]);
+console.log(jon.nombre);
+console.log(jon.apellido);
+console.log(jon.edad);
+console.log(jon.soltero);
+console.log(jon.pasatiempos);
+
+/*Podemos acceder a atributos "especiales" de nuestro objeto, como lo son los arreglos, funciones u otros objetos; de igual forma podemos acceder a los atributos de un objeto encerrado por otro.
+
+    Para acceder a la posición exacta de un arreglo, hacemos uso de la notación de corchetes especificando la posición del arreglo (propiedad) en cuestión.
+
+    Para acceder a los atributos de un objeto encerrado por otro, usamos la notación de punto ( . ), para especificar primero cuál es el objeto al que se desea acceder, y posteriormente otro punto ( . ) especificando el atributo deseado.
+
+    Para acceder a las funciones de un objeto, escribimos el nombre de la función seguido de paréntesis (), debido a que al ser funciones pueden recibir parámetro o no.
+    
+*/
+console.log(jon.pasatiempos[1]);
+console.log(jon.contacto);
+console.log(jon.contacto.twitter);
+jon.saludar()
+jon.decirMiNombre()
+
+//Métodos de los objetos
+/*
+    Object.keys() -> Este método recibe como parámetro el nombre de un objeto; devuelve un array especificando en qué posición del objeto se encuentra una propiedad.
+
+    Object.values() -> Este método recibe como parámetro el nombre de un objeto; devuelve un array especificando en qué posición del objeto se cuentra un valor.
+
+    Object.hasOwnProperty() -> Este método recibe como parámetro un string con el nombre de una propiedad que deseamos verificar si está contenida en nuestro objeto. Retornará true si el objeto posee la propiedad especificada o false en caso de no contenerla.
+
+*/
+console.log(Object.keys(jon));
+console.log(Object.values(jon));
+console.log(jon.hasOwnProperty("nombre"));
+console.log(jon.hasOwnProperty("nacimiento"));
